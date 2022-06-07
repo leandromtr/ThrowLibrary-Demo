@@ -10,14 +10,35 @@ namespace HelperLibrary;
 
 public class ThrowMethods
 {
-    public int AgeInDecades(int age)
+    public string AdultAgeValidation(int age)
     {
-        age.Throw()
+        try
+        {
+            age.Throw()
             .IfNegative()
+            .IfLessThan(18)
             .IfGreaterThan(130);
-
-        return age / 10;
-    }
+            return "Ok";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }    
+    
+    //public string URIValidation(string uri)
+    //{
+    //    try
+    //    {
+    //        uri.Throw()
+    //            .IfNotHttps(uri);
+    //        return "Ok";
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return ex.Message;
+    //    }
+    //}
 
     public void NameValidation(string? name)
     {
@@ -27,13 +48,13 @@ public class ThrowMethods
                 .IfEmpty()
                 .IfWhiteSpace()
                 .IfEqualsIgnoreCase("Leandro Reis")
-                .IfLongerThan(12); 
+                .IfLongerThan(12)
+                .IfContains("xpto");
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
-
     }
 
     public string NameValidationX(string name)
@@ -44,6 +65,7 @@ public class ThrowMethods
                 .IfEmpty()
                 .IfWhiteSpace()
                 .IfEqualsIgnoreCase("Leandro Reis")
+                .IfShorterThan(7)
                 .IfLongerThan(12);
             return "Ok";
         }
@@ -51,7 +73,20 @@ public class ThrowMethods
         {
             return ex.Message;
         }
-
+    }    
+    
+    public string DateValidation(DateTime date)
+    {
+        try
+        {
+            date.ThrowIfNull()
+                .IfGreaterThan(p => p.Date, DateTime.Now.AddYears(-20));
+            return "Ok";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
     }
 }
 
