@@ -10,6 +10,26 @@ namespace HelperLibrary;
 
 public class ThrowMethods
 {
+    public string NameValidation(string name)
+    {
+        try
+        {
+            name.Throw()
+                .IfEmpty()
+                .IfWhiteSpace()
+                .IfEqualsIgnoreCase("Leandro Reis")
+                .IfShorterThan(7)
+                .IfLongerThan(12)
+                .IfContains("xpto");
+            return "Ok";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+
+
     public string AdultAgeValidation(int age)
     {
         try
@@ -24,63 +44,14 @@ public class ThrowMethods
         {
             return ex.Message;
         }
-    }    
-    
-    //public string URIValidation(string uri)
-    //{
-    //    try
-    //    {
-    //        uri.Throw()
-    //            .IfNotHttps(uri);
-    //        return "Ok";
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return ex.Message;
-    //    }
-    //}
-
-    public void NameValidation(string? name)
-    {
-        try
-        {
-            name.ThrowIfNull()
-                .IfEmpty()
-                .IfWhiteSpace()
-                .IfEqualsIgnoreCase("Leandro Reis")
-                .IfLongerThan(12)
-                .IfContains("xpto");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
     }
 
-    public string NameValidationX(string name)
-    {
-        try
-        {
-            name.ThrowIfNull()
-                .IfEmpty()
-                .IfWhiteSpace()
-                .IfEqualsIgnoreCase("Leandro Reis")
-                .IfShorterThan(7)
-                .IfLongerThan(12);
-            return "Ok";
-        }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
-    }    
-    
     public string DateValidation(DateTime date)
     {
         try
         {
             date.ThrowIfNull()
-                .IfGreaterThan(p => p.Date, DateTime.Now.AddYears(-20));
+                .IfGreaterThan(p => p.Date, DateTime.Now.AddDays(1));
             return "Ok";
         }
         catch (Exception ex)

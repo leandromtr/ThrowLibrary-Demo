@@ -2,30 +2,12 @@
 using System.Text.RegularExpressions;
 using Throw;
 
-List<string?> nameList = new List<string?>()
-{
-    "Leandro Reis",
-    "Lucas Silva",
-    "Mateus Reis",
-    "Lessa de Oliveira",
-    "",
-    null
-};
-
-
-List<string> uriList = new List<string>()
-{
-    "https://github.com/leandromtr/DemoFeatures",
-    "https://www.oquevisitar.com.br/",
-    "http://www6.teste.com/",
-    "https://github.com/amantinband/throw"
-};
 
 List<DateTime> dateList = new List<DateTime>()
 {
     DateTime.Now,
-    DateTime.Now.AddDays(-10000),
-    DateTime.Now.AddDays(10000),
+    DateTime.Now.AddDays(-984),
+    DateTime.Now.AddDays(34234),
 };
 
 
@@ -39,7 +21,7 @@ List<int> ageList = new List<int>()
     -2
 };
 
-List<string> nameLisXt = new List<string>()
+List<string> nameList = new List<string>()
 {
     "Leandro Reis",
     "Lucas Silva",
@@ -53,16 +35,27 @@ List<string> nameLisXt = new List<string>()
 
 ThrowMethods helpers = new();
 
-
-//String Validation
+//Name Validation
 Console.WriteLine("");
-Console.WriteLine("Example String Validations");
+Console.WriteLine("Example Name Validations");
 Console.WriteLine("--------------------------------------------------------------------------------------------");
 Console.WriteLine("Name                 - Error");
 Console.WriteLine("--------------------------------------------------------------------------------------------");
-foreach (var item in nameLisXt)
+foreach (var item in nameList)
 {
-    Console.WriteLine(string.Format("{0} - {1}", item.PadRight(20, ' '), helpers.NameValidationX(item)));
+    Console.WriteLine(string.Format("{0} - {1}", item.PadRight(20, ' '), helpers.NameValidation(item)));
+}
+
+
+//Numbers Validation
+Console.WriteLine("");
+Console.WriteLine("Example Numbers Validations");
+Console.WriteLine("--------------------------------------------------------------------------------------------");
+Console.WriteLine("Number               - Error");
+Console.WriteLine("--------------------------------------------------------------------------------------------");
+foreach (var item in ageList)
+{
+    Console.WriteLine(string.Format("{0} - {1}", item.ToString().PadRight(20, ' '), helpers.AdultAgeValidation(item)));
 }
 
 
@@ -76,28 +69,5 @@ foreach (var item in dateList)
 {
     Console.WriteLine(string.Format("{0} - {1}", item.ToString().PadRight(20, ' '), helpers.DateValidation(item)));
 }
-
-
-////URI Validation
-//Console.WriteLine("");
-//Console.WriteLine("Example URI Validations");
-//Console.WriteLine("--------------------------------------------------------------------------------------------");
-//Console.WriteLine("URI                  - Error");
-//Console.WriteLine("--------------------------------------------------------------------------------------------");
-//foreach (var item in uriList)
-//{
-//    Console.WriteLine(string.Format("{0} - {1}", item.PadRight(20, ' '), helpers.URIValidation(item)));
-//}
-
-
-//Numbers Validation
-Console.WriteLine("");
-Console.WriteLine("Example Numbers Validations");
-Console.WriteLine("--------------------------------------------------------------------------------------------");
-Console.WriteLine("Number               - Error");
-Console.WriteLine("--------------------------------------------------------------------------------------------");
-foreach (var item in ageList)
-{
-    Console.WriteLine(string.Format("{0} - {1}", item.ToString().PadRight(20, ' '), helpers.AdultAgeValidation(item)));
-}
 Console.ReadLine();
+
